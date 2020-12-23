@@ -2,9 +2,8 @@
 #### Realtime group chat demo1
 
 This is demo/poc for real time group chat, built with below tech. stack.
-
-`Frontend` : [React.js], [socket.io], [webpack], [babel], [cypress]
-`Backend` : [Go language], [websocket], [rethinkdb], [rethinkdb-go driver]
+- `Frontend` : [React.js], [socket.io], [webpack], [babel], [cypress].
+- `Backend` : [Go language], [websocket], [rethinkdb], [rethinkdb-go driver].
 
 ##### Features
   - Realtime multi-user message broadcasting.
@@ -13,10 +12,10 @@ This is demo/poc for real time group chat, built with below tech. stack.
 
 ##### Installation
 Pre-requirement for install + execution to work properly :
-[Go language] >= v1.10, 
-[Rethinkdb-go driver], 
-[Node.js] >= 8.10+, 
-npm >= 5.6.0 Or yarn
+- [Go language] >= v1.10, 
+- [Rethinkdb-go driver], 
+- [Node.js] >= 8.10+, 
+- npm >= 5.6.0 Or yarn
 
 Update configuration as per development environment, once the source code in place : 
 
