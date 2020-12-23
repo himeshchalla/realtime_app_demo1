@@ -1,0 +1,27 @@
+# dependencies
+/frontend/node_modules
+
+# testing
+/backend/coverage
+/frontend/coverage
+/frontend/cypress/integration
+/frontend/cypress/fixtures
+/frontend/cypress/plugins
+/frontend/cypress/support
+/frontend/cypress/videos
+
+# production
+/frontend/build
+/frontend/dist
+
+# misc
+/frontend/.env.local
+/frontend/.env.development.local
+/frontend/.env.test.local
+/frontend/.env.production.local
+
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+
+/frontend/package-lock.json

@@ -1,0 +1,20 @@
+{
+  "baseUrl": "http://localhost:9000",
+  "projectId": "demo_project_id",
+  "integrationFolder": "cypress/tests",
+  "viewportHeight": 1000,
+  "viewportWidth": 1280,
+  "firefoxGcInterval": null,
+  "retries": {
+    "runMode": 2,
+    "openMode": 1
+  },
+  "env": {
+    "apiUrl": "http://localhost:9001",
+    "mobileViewportWidthBreakpoint": 414,
+    "coverage": false,
+    "codeCoverage": {
+      "url": "http://localhost:9001/__coverage__"
+    }
+  }
+}

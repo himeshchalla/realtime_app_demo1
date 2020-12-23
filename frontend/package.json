@@ -1,0 +1,38 @@
+{
+  "name": "realtimeappdemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engineStrict": true,
+  "engines": {
+    "node": ">=8.10.0",
+    "npm": ">=5.6.0"
+  },
+  "scripts": {
+    "start:development": "webpack-dev-server --config ./webpack.config.js --progress",
+    "test": "cypress run --config-file cypress/cypress-config.json",
+    "development": "webpack --mode=development",
+    "build:development": "concurrently \"webpack-dev-server --config ./webpack.config.js --progress\" \"npm run test\"",
+    "build:production": "webpack --entry ./index.js --output ./dist/bundle.js --mode=production",
+    "cypress:open": "cypress open"
+  },
+  "author": "Himesh Challa",
+  "license": "ISC",
+  "dependencies": {
+    "fecha": "^4.2.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
+    "concurrently": "^5.3.0",
+    "cypress": "^4.9.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
