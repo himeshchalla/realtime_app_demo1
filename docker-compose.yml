@@ -1,0 +1,90 @@
+version: "3.9"
+services:
+  # rethinkdb_service:
+  #   container_name: realtime_app_rethinkdb
+  #   # image: rethinkdb:2.4
+  #   build:
+  #     dockerfile: ./init/Dockerfile
+  #     context: ./rethinkdb
+  #   restart: always
+  #   env_file: 
+  #     - .env
+  #     - .env.test
+  #   ports:
+  #     - "8080:8080"
+  #     - "28015:28015"
+  #     - "29015:29015"
+  #   # command: bash -c "rethinkdb restore -i ./seed/realtimeapp.channel.json -c rethinkdb_service:28015"
+  #   # command: bash -c "rethinkdb restore -i ./seed/realtimeapp.channel.json -i realtimeapp.channel"
+  #   # command: bash -c "rethinkdb import -f /home/app/seed/realtimeapp.channel.json --table realtimeapp.channel --format json -c realtime_app_rethinkdb:28015"
+  #   volumes:
+  #     - "./rethinkdb/seed:/home/app/seed/"
+  #     # - "./rethinkdb/init/:/docker-entrypoint-initdb.d"
+  #     # - "./rethinkdb/init:/home/rethinkdb"
+  #     # - "./data:/data/db"
+  #   networks:
+  #     - realtime_app_network
+  api_service:
+    container_name: realtime_app_api
+    build:
+      dockerfile: ./Dockerfile.go.dev
+      context: ./backend
+    # image: golang:1.10
+    # restart: unless-stopped
+    restart: 'no'
+    # working_dir: /usr/src/realtime_app_demo1
+    working_dir: /go/src/app
+    # command: bash -c "go run ./backend/*.go"
+    # command: bash -c "go mod init && go get /go/src/realtime_app_demo1/backend/... && go build /go/src/realtime_app_demo1/backend/*.go"
+    command: bash -c "go build /go/src/app/backend/*.go"
+    env_file: .env
+    volumes:
+      # Map/Mount current working directory into container's directory
+      - ./backend:/go/src/app/backend
+      # - ./backend:$GOPATH/realtime_app_demo1/backend
+      # Map/Mount node_modules from container
+      # - ./package.json:/usr/src/songlyrics_service/package.json
+      # - ./package-lock.json:/usr/src/songlyrics_service/package-lock.json
+    ports:
+      - 9001:9001
+    # depends_on:
+    #   - rethinkdb_service
+    networks:
+      - realtime_app_network
+  # nginx_service:
+  #   container_name: realtime_app_nginx
+  #   restart: unless-stopped
+  #   build:
+  #     dockerfile: Dockerfile
+  #     context: ./nginx
+  #   ports:
+  #     - 9000:9000
+  #   depends_on:
+  #     - api_service
+  #   networks:
+  #     - realtime_app_network
+  # api_test_service:
+  #   container_name: realtime_app_api_test
+  #   image: cypress/base:14.17.3
+  #   # restart: "on-failure"
+  #   restart: "no"
+  #   working_dir: /usr/src/realtime_app_demo1
+  #   command: bash -c "npm install && npm run cypress:run"
+  #   env_file: .env.test
+  #   # environment:
+  #   #   - CYPRESS_baseUrl=http://nginx_service
+  #   volumes:
+  #     - ./frontend/cypress:/usr/src/realtime_app_demo1/frontend/cypress
+  #     - ./frontend/cypress/cypress-config.json:/usr/src/realtime_app_demo1/frontend/cypress/cypress-config.json
+  #     - ./frontend/package.json:/usr/src/realtime_app_demo1/frontend/package.json
+  #     - ./frontend/package-lock.json:/usr/src/realtime_app_demo1/frontend/package-lock.json
+  #   # ports:
+  #   #   - 9002:9002
+  #     # - 9222:9222
+  #   depends_on:
+  #     - nginx_service
+  #   networks:
+  #     - realtime_app_network
+networks:
+  realtime_app_network:
+    driver: bridge

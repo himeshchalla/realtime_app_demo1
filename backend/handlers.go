@@ -148,14 +148,16 @@ func addChannelMessage(client *Client, data interface{}) {
 	go func() {
 		channelMessage.CreatedAt = time.Now()
 		channelMessage.Author = client.userName
-		err := r.Table("message").
+		cursor, err := r.Table("message").
 			Insert(channelMessage).
 			IndexCreate("createdAt").
-			Exec(client.session)
+			Run(client.session)
+			// Exec(client.session)
 		if err != nil {
 			client.send <- Message{"error", err.Error()}
 		}
 		fmt.Println(err)
+		fmt.Println(cursor)
 	}()
 }
 func subscribeChannelMessage(client *Client, data interface{}) {

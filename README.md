@@ -1,9 +1,11 @@
 
-#### Realtime group chat demo1
+#### [Work-in-progress] Realtime group chat app
 
-This is demo/poc for real time group chat, built with below tech. stack.
+This is a work-in-progress app for real time group chat, built with below tech. stack.
 - `Frontend` : [React.js], [socket.io], [webpack], [babel], [cypress].
 - `Backend` : [Go language], [websocket], [rethinkdb], [rethinkdb-go driver].
+- `Other` : [nginx], [Docker]
+
 
 ##### Features
   - Realtime multi-user message broadcasting.
@@ -44,10 +46,14 @@ Update configuration as per development environment, once the source code in pla
 	$ npm run build:development (hot reload + tests)
 	```
 	For frontend tests, update configuration in `frontend/cypress/cypress-config.json` then -> ``` $ npm run test ```
-##### Todo (WIP)
+
+##### Execute through docker
+- Work-in-progress
+
+##### Todo (WIP - Work-in-progress)
 
  - Writing more tests (work in progress)
- - User management and authentication (work in progress)
+ - Code refactor (work in progress)
  - List goes on ...
 
 ##### License
@@ -65,6 +71,5 @@ Apache License 2.0
    [rethinkdb-go driver]: <https://github.com/rethinkdb/rethinkdb-go>
    [node.js]: <https://nodejs.org/>
    [cypress]: <https://www.cypress.io/>
-
-
-
+   [nginx]: <https://www.nginx.com/>
+   [Docker]: <https://github.com/docker>
